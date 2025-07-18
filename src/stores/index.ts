@@ -1,3 +1,3 @@
 // Store exports
-// export { useBettingStore } from './bettingStore';
+export { useBettingStore } from './bettingStore';
 // export { useUIStore } from './uiStore';
