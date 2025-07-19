@@ -1,43 +1,41 @@
 import React from 'react';
 
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  hover?: boolean;
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  variant?: 'default' | 'hover' | 'selected';
   padding?: 'sm' | 'md' | 'lg';
-  shadow?: 'sm' | 'md' | 'lg';
+  children: React.ReactNode;
 }
 
-const Card: React.FC<CardProps> = ({
-  children,
-  className = '',
-  hover = false,
-  padding = 'md',
-  shadow = 'md'
-}) => {
-  const baseClasses = 'bg-white rounded-lg border border-gray-200';
-  
-  const paddingClasses = {
-    sm: 'p-3',
-    md: 'p-4',
-    lg: 'p-6'
-  };
-  
-  const shadowClasses = {
-    sm: 'shadow-sm',
-    md: 'shadow-md',
-    lg: 'shadow-lg'
-  };
-  
-  const hoverClasses = hover ? 'hover:shadow-lg transition-shadow duration-200 cursor-pointer' : '';
-  
-  const classes = `${baseClasses} ${paddingClasses[padding]} ${shadowClasses[shadow]} ${hoverClasses} ${className}`;
-  
-  return (
-    <div className={classes}>
-      {children}
-    </div>
-  );
-};
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ variant = 'default', padding = 'md', children, className = '', ...props }, ref) => {
+    const baseClasses = 'bg-white rounded-lg shadow-md border border-gray-200';
+    
+    const variantClasses = {
+      default: '',
+      hover: 'transition-shadow duration-200 hover:shadow-lg cursor-pointer',
+      selected: 'ring-2 ring-primary-500 border-primary-500 shadow-lg'
+    };
+    
+    const paddingClasses = {
+      sm: 'p-3',
+      md: 'p-4',
+      lg: 'p-6'
+    };
+    
+    const classes = `${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${className}`;
+    
+    return (
+      <div
+        ref={ref}
+        className={classes}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+);
+
+Card.displayName = 'Card';
 
 export default Card;
