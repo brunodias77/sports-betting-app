@@ -6,6 +6,7 @@ import Modal from './components/ui/Modal';
 import Input from './components/ui/Input';
 import LoadingSpinner from './components/ui/LoadingSpinner';
 import Badge from './components/ui/Badge';
+import ErrorBoundary from './components/ui/ErrorBoundary';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,8 +23,14 @@ function App() {
     }
   };
 
+  const handleError = (error: Error, errorInfo: React.ErrorInfo) => {
+    // Log error to external service in production
+    console.error('Application error:', error, errorInfo);
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <ErrorBoundary onError={handleError}>
+      <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <header className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -162,7 +169,8 @@ function App() {
           },
         }}
       />
-    </div>
+      </div>
+    </ErrorBoundary>
   );
 }
 

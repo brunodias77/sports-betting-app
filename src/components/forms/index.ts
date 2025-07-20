@@ -1,3 +1,4 @@
 // Form Components exports
-// export { BetForm } from './BetForm';
+export { default as BetForm } from './BetForm';
+export { default as BetModal } from './BetModal';
 // export { BalanceManager } from './BalanceManager';

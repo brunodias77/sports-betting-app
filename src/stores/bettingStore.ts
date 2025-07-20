@@ -88,9 +88,9 @@ export const useBettingStore = create<BettingStore>()(
           // Simulate API call - in real app this would be an actual API call
           await new Promise(resolve => setTimeout(resolve, 500));
           
-          // For now, we'll load from a mock data source
-          // This will be replaced when task 5 (mock data) is implemented
-          const mockEvents: SportEvent[] = [];
+          // Import mock data dynamically to avoid circular dependencies
+          const { generateAllMockEvents } = await import('../data/mockEvents');
+          const mockEvents = generateAllMockEvents(30);
           
           set({ events: mockEvents });
         } catch (error) {

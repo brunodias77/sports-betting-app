@@ -43,9 +43,9 @@ export const Layout: React.FC<LayoutProps> = ({
         
         {/* Mobile Layout */}
         <div className="md:hidden">
-          <div className="px-4 py-4 pb-20"> {/* pb-20 to account for bottom navigation */}
+          <div className="px-4 py-4 pb-24"> {/* pb-24 to account for bottom navigation with extra space */}
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 min-h-[500px]">
-              <div className="p-4">
+              <div className="p-4 sm:p-6">
                 {children}
               </div>
             </div>

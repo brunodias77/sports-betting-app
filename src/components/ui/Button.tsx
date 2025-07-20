@@ -18,9 +18,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     };
     
     const sizeClasses = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg'
+      sm: 'px-3 py-2 text-sm min-h-[44px]', // Ensure minimum 44px touch target
+      md: 'px-4 py-2 text-base min-h-[44px]',
+      lg: 'px-6 py-3 text-lg min-h-[48px]'
     };
     
     const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;

@@ -72,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, size = 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black bg-opacity-50"
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
@@ -80,7 +80,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, size = 
     >
       <div
         ref={modalRef}
-        className={`bg-white rounded-lg shadow-xl w-full ${sizeClasses[size]} transform transition-all duration-200 scale-100`}
+        className={`bg-white rounded-lg shadow-xl w-full ${sizeClasses[size]} max-h-[90vh] overflow-y-auto transform transition-all duration-200 scale-100`}
         tabIndex={-1}
         onClick={(e) => e.stopPropagation()}
       >
@@ -91,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, size = 
           </h2>
           <button
             onClick={onClose}
-            className="p-1 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded"
+            className="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
             aria-label="Close modal"
           >
             <svg
